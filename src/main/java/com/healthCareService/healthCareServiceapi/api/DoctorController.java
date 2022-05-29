@@ -13,13 +13,14 @@ public class DoctorController {
     @Autowired
     private DoctorService doctorService;
 
-    //endpoint to save a new doctor
+    //endpoint to save a new doctor "/api/v1/doctors"
     @PostMapping("/doctors")
     public void saveUser(@RequestBody Doctor doctor){
         doctorService.saveDoctor(doctor);
     }
 
     //endpoint to get a list of doctors based off an offset and max number of returned rows = 10
+    //"/api/v1/doctors"
     @GetMapping("/doctors")
     public List<Doctor> fetchDoctors(@RequestParam(required = false) Integer offset){
         if (offset == null){
@@ -28,13 +29,14 @@ public class DoctorController {
         return doctorService.fetchDoctors(offset);
     }
 
-    //Select a single doctor based of email
+    //Select a single doctor based of email "/api/v1/doctors/{email}"
+
     @GetMapping("/doctors/{email}")
     public Doctor fetchDoctor(@PathVariable("email") String email){
         return doctorService.selectDoctor(email);
     }
 
-    //Update doctors address
+    //Update doctors address "/api/v1/doctors/{email}"
     @PutMapping("/doctors/{email}")
     public Doctor updateStudent(@PathVariable("email") String email,
                                  @RequestParam(required = false) String homeAddress,
@@ -44,7 +46,7 @@ public class DoctorController {
         return doctorService.editAddress(email,homeAddress,lga,state);
     }
 
-    //delete a doctor entry
+    //delete a doctor entry "/api/v1/doctors/{email}"
     @DeleteMapping("/doctors/{email}")
     public void deleteStudent(@PathVariable("email") String email){
         doctorService.deleteDoctor(email);
