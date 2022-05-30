@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name="o_address")
+@Entity(name="address")
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +21,5 @@ public class Address {
     private String homeAddress;
     private String lga;
     private String state;
+
 }
